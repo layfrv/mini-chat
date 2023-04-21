@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { auth, db } from '../../utils/firebase';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import '../Chat/chat.modules.scss';
 
 const SendMessage = () => {
   const [message, setMessage] = useState('');
@@ -15,8 +16,8 @@ const SendMessage = () => {
     const { uid, displayName, photoURL } = auth.currentUser;
     await addDoc(collection(db, 'messages'), {
       text: message,
-      name: displayName,
-      avatar: photoURL,
+      displayName: displayName,
+      photoURL: photoURL,
       createdAt: serverTimestamp(),
       uid,
     });
@@ -24,20 +25,20 @@ const SendMessage = () => {
   };
 
   return (
-    <form className='send-message'>
-      <label htmlFor='messageInput' hidden>
+    <form className="text-field" onSubmit={(e) => sendMessage(e)}>
+      <label htmlFor="messageInput" hidden>
         Enter Message
       </label>
       <input
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        id='messageInput'
-        name='messageInput'
-        type='text'
-        className='form-input__input'
-        placeholder='type message...'
+        id="messageInput"
+        name="messageInput"
+        type="text"
+        className="text-input"
+        placeholder="type message..."
       />
-      <button type='submit' onSubmit={(e) => sendMessage(e)}>
+      <button className="send-btn" type="submit">
         Send
       </button>
     </form>

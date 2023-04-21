@@ -33,13 +33,14 @@ export const Chat = () => {
   }, []);
 
   return (
-    <div className='chat_container'>
-      <div className='chats'></div>
+    <div className="chat_container">
+      <div className="chats"></div>
 
-      <div className='chat-field'>
+      <div className="chat-field">
         <>
           {messages.map((message) => (
             <Message
+              key={message.uid}
               name={message.displayName}
               text={message.text}
               avatar={message.photoURL}
@@ -48,13 +49,6 @@ export const Chat = () => {
           ))}
         </>
         <SendMessage />
-        <div className='text-field'>
-          <input
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            className='text-input'></input>
-          <button className='send-btn'>send</button>
-        </div>
       </div>
     </div>
   );
