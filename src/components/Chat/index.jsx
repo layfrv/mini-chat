@@ -32,11 +32,11 @@ const Chat = () => {
   }, []);
 
   return (
-    <div className="chat_container">
-      <div className="chats"></div>
+    <div className='chat_container'>
+      <div className='chats'></div>
 
-      <div className="chat-field">
-        <>
+      <div className='chat-field'>
+        <div className='chat-messages'>
           {messages?.map((message) => (
             <Message
               key={message.uid}
@@ -47,7 +47,7 @@ const Chat = () => {
               uid={message.uid}
             />
           ))}
-        </>
+        </div>
         <SendMessage />
       </div>
     </div>
