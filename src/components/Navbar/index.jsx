@@ -5,7 +5,7 @@ import { LOGIN_ROUTE } from '../../utils/consts';
 import { auth } from '../../utils/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-export const Navbar = () => {
+const Navbar = () => {
   const [user] = useAuthState(auth);
 
   return (
@@ -25,3 +25,5 @@ export const Navbar = () => {
     </>
   );
 };
+
+export default Navbar;

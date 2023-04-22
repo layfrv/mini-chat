@@ -16,16 +16,18 @@ const signInWithGoogle = () => {
     });
 };
 
-export const Login = () => {
+const Login = () => {
   return (
-    <div className='container'>
-      <div onClick={signInWithGoogle} id='gSignInWrapper'>
-        <span class='label'>Sign in with: </span>
-        <div id='customBtn' class='customGPlusSignIn'>
-          <span class='icon'></span>
-          <span class='buttonText'>Google</span>
+    <div className="container">
+      <div onClick={signInWithGoogle} id="gSignInWrapper">
+        <span class="label">Sign in with: </span>
+        <div id="customBtn" class="customGPlusSignIn">
+          <span class="icon"></span>
+          <span class="buttonText">Google</span>
         </div>
       </div>
     </div>
   );
 };
+
+export default Login;

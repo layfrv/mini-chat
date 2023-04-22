@@ -1,5 +1,5 @@
-import { Chat } from './components/Chat/index';
-import { Login } from './components/Login/index';
+import Chat from './components/Chat/index';
+import Login from './components/Login/index';
 import { CHAT_ROUTE, LOGIN_ROUTE } from './utils/consts';
 
 export const publicRoutes = [

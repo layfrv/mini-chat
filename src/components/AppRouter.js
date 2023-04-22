@@ -4,10 +4,10 @@ import { privateRoutes, publicRoutes } from '../routes';
 import { CHAT_ROUTE, LOGIN_ROUTE } from '../utils/consts';
 import { auth } from '../utils/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Loader } from './Loader';
+import Loader from './Loader';
 
 
-export const AppRouter = () => {
+const AppRouter = () => {
   const [user, loading, error] = useAuthState(auth);
   
 
@@ -31,3 +31,5 @@ export const AppRouter = () => {
     </Routes>
   );
 };
+
+export default AppRouter;
