@@ -4,6 +4,7 @@
   margin: 30px auto;
   width: 800px;
   height: 450px;
+  background-color: rgba(218, 204, 229, 0.292);
 
   border-radius: 20px;
   box-shadow: rgba(72, 0, 58, 0.2) 0px 5px 29px 0px;
@@ -11,9 +12,8 @@
 
 .chats {
   height: 450px;
-  border-right: 1px solid black;
   border-radius: inherit;
-  background-color: rgb(93, 39, 93);
+  background-color: rgba(77, 11, 77, 0.844);
   align-self: flex-start;
 }
 
@@ -22,7 +22,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  height: 350px;
+  height: 360px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -76,7 +76,7 @@
 .msg-content {
   padding: 15px;
   padding-right: 25px;
-  background-color: rgb(230, 222, 230);
+  background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -102,6 +102,11 @@
   border: 1px solid rgb(225, 225, 225);
   border-radius: 20px;
   padding-left: 20px;
+
+  &:focus {
+    background-color: white;
+    outline: 1px solid rgba(116, 80, 121, 0.395);
+  }
 }
 
 .send-btn {
@@ -110,9 +115,11 @@
   border-radius: 20px;
   border: none;
   margin-left: 10px;
+  font-weight: 600;
+  background-color: rgba(216, 146, 220, 0.285);
 
   &:hover {
-    background-color: rgb(53, 0, 56);
+    background-color: rgb(117, 0, 124);
     color: white;
   }
 }
@@ -124,6 +131,7 @@
 }
 
 ::-webkit-scrollbar {
+  border-radius: 10px;
   width: 12px;
   background-color: #f5f5f5;
 }
@@ -131,5 +139,5 @@
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #58005e78;
+  background-color: #58005e1a;
 }
