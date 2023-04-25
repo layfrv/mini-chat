@@ -1,44 +1,39 @@
-import React, { useState } from 'react';
+import { React, useState } from 'react';
+import '../Chat/chat.modules.scss';
 import { auth, db } from '../../utils/firebase';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
-import '../Chat/chat.modules.scss';
 
-const SendMessage = () => {
-  const [message, setMessage] = useState('');
+const SendMessage = ({ scroll }) => {
+  const [textMessage, setTextMessage] = useState('');
 
   const sendMessage = async (event) => {
     event.preventDefault();
-    if (message.trim() === '') {
-      alert('enter your message');
-      return;
-    }
 
     const { uid, displayName, photoURL } = auth.currentUser;
+
     await addDoc(collection(db, 'messages'), {
-      text: message,
-      displayName: displayName,
-      photoURL: photoURL,
+      text: textMessage,
+      displayName,
+      photoURL,
       createdAt: serverTimestamp(),
       uid,
     });
-    setMessage('');
+    setTextMessage('');
+    scroll.current.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <form className="text-field" onSubmit={(e) => sendMessage(e)}>
-      <label htmlFor="messageInput" hidden>
-        Enter Message
-      </label>
+    <form className='text-field' onSubmit={(e) => sendMessage(e)}>
       <input
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        id="messageInput"
-        name="messageInput"
-        type="text"
-        className="text-input"
-        placeholder="type message..."
+        value={textMessage}
+        onChange={(e) => setTextMessage(e.target.value)}
+        id='messageInput'
+        name='messageInput'
+        type='text'
+        className='text-input'
+        placeholder='type message...'
       />
-      <button className="send-btn" type="submit">
+      <button className='send-btn' type='submit' disabled={!textMessage} onClick={sendMessage}>
         Send
       </button>
     </form>

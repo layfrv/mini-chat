@@ -1,34 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './chat.modules.scss';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-import Loader from '../Loader';
-import { collection, orderBy, getDocs } from 'firebase/firestore';
+import { collection, orderBy, query, onSnapshot } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, db } from '../../utils/firebase';
-import Message from '../Message';
+import Message from '../Message/Message';
 import SendMessage from '../Message/SendMessage';
+import Skeleton from '../Skeleton/';
 
 const Chat = () => {
   const [user] = useAuthState(auth);
-  const [value, setValue] = useState('');
   const [messages, setMessages] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const messagesCollectionRef = collection(db, 'messages');
+  const scroll = useRef();
 
   useEffect(() => {
-    const getMessages = async () => {
-      try {
-        const data = await getDocs(messagesCollectionRef);
-        const filteredData = data.docs.map((doc) => ({
-          ...doc.data(),
-        }));
-        setMessages(filteredData);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    getMessages();
+    setIsLoading(true);
+    const q = query(collection(db, 'messages'), orderBy('createdAt'));
+    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+      let messages = [];
+      QuerySnapshot.forEach((doc) => {
+        messages.push({ ...doc.data(), id: doc.id });
+      });
+      setMessages(messages);
+      setIsLoading(false);
+    });
+    return () => unsubscribe;
   }, []);
 
   return (
@@ -37,18 +34,10 @@ const Chat = () => {
 
       <div className='chat-field'>
         <div className='chat-messages'>
-          {messages?.map((message) => (
-            <Message
-              key={message.uid}
-              name={message.displayName}
-              text={message.text}
-              avatar={message.photoURL}
-              time={message.time}
-              uid={message.uid}
-            />
-          ))}
+          {isLoading ? <Skeleton /> : messages?.map((message) => <Message message={message} />)}
+          <span ref={scroll}></span>
+          <SendMessage scroll={scroll} />
         </div>
-        <SendMessage />
       </div>
     </div>
   );

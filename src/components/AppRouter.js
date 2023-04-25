@@ -6,10 +6,8 @@ import { auth } from '../utils/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Loader from './Loader';
 
-
 const AppRouter = () => {
   const [user, loading, error] = useAuthState(auth);
-  
 
   if (loading) {
     return <Loader />;
@@ -20,14 +18,14 @@ const AppRouter = () => {
       {privateRoutes.map(({ path, Component }) => (
         <Route path={path} key={path} element={Component} exact={true} />
       ))}
-      <Route path="*" element={<Navigate to={CHAT_ROUTE} replace />} />
+      <Route path='*' element={<Navigate to={CHAT_ROUTE} replace />} />
     </Routes>
   ) : (
     <Routes>
       {publicRoutes.map(({ path, Component }) => (
         <Route path={path} key={path} element={Component} exact={true} />
       ))}
-      <Route path="*" element={<Navigate to={LOGIN_ROUTE} replace />} />
+      <Route path='*' element={<Navigate to={LOGIN_ROUTE} replace />} />
     </Routes>
   );
 };

@@ -7,39 +7,49 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: nowrap;
 }
 
-#customBtn {
-  display: inline-block;
+.g-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.g-btn {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  margin-left: 10px;
   background: white;
   color: #444;
   width: 120px;
   border-radius: 5px;
   border: thin solid #888;
   box-shadow: 1px 1px 1px grey;
-  white-space: nowrap;
 }
 
-#customBtn:hover {
+.g-btn:hover {
   cursor: pointer;
   border: 1px solid purple;
 }
 
-span.label {
+.label {
   margin-right: 5px;
   font-family: 'Roboto';
   font-weight: normal;
 }
 
-span.icon {
-  background: url('../../assets/google_icon.svg') transparent 5px 50% no-repeat;
-  display: inline-block;
+.icon {
+  margin-left: 5px;
+  margin-right: 5px;
   vertical-align: middle;
-  width: 42px;
-  height: 42px;
+  width: 35px;
+  height: 35px;
 }
 
-span.buttonText {
+.buttonText {
   display: inline-block;
   vertical-align: middle;
 
