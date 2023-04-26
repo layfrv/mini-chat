@@ -1,10 +1,11 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import '../Chat/chat.modules.scss';
 import { auth, db } from '../../utils/firebase';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 
-const SendMessage = ({ scroll }) => {
-  const [textMessage, setTextMessage] = useState('');
+
+const SendMessage = ({ scroll, textMessage, setTextMessage }) => {
+
 
   const sendMessage = async (event) => {
     event.preventDefault();
@@ -22,18 +23,20 @@ const SendMessage = ({ scroll }) => {
     scroll.current.scrollIntoView({ behavior: 'smooth' });
   };
 
+
   return (
-    <form className='text-field' onSubmit={(e) => sendMessage(e)}>
+    <form className="text-field" onSubmit={(e) => sendMessage(e)}>
       <input
         value={textMessage}
         onChange={(e) => setTextMessage(e.target.value)}
-        id='messageInput'
-        name='messageInput'
-        type='text'
-        className='text-input'
-        placeholder='type message...'
+        id="messageInput"
+        name="messageInput"
+        type="text"
+        className="text-input"
+        placeholder="type message..."
       />
-      <button className='send-btn' type='submit' disabled={!textMessage} onClick={sendMessage}>
+     
+      <button className="send-btn" type="submit" disabled={!textMessage} onClick={sendMessage}>
         Send
       </button>
     </form>
