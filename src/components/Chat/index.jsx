@@ -6,7 +6,6 @@ import { auth, db } from '../../utils/firebase';
 import Message from '../Message/Message';
 import SendMessage from '../Message/SendMessage';
 import Skeleton from '../Skeleton/';
-import Picker from 'emoji-picker-react';
 
 const Chat = () => {
   const [user] = useAuthState(auth);
@@ -31,27 +30,13 @@ const Chat = () => {
     return () => unsubscribe;
   }, []);
 
-  const [showEmojis, setShowEmojis] = useState(false);
-
-  const onEmojiClick = (event, emojiObject) => {
-    setTextMessage((prev) => prev + emojiObject.emoji);
-    setShowEmojis(false);
-  };
-
   return (
     <div className="chat_container">
       <div className="chat-messages">
         {isLoading ? <Skeleton /> : messages?.map((message) => <Message message={message} />)}
         <span ref={scroll}></span>
-        <SendMessage textMessage={textMessage} setTextMessage={setTextMessage} scroll={scroll} />
-
-        <div className='emoji-container'>
-          <button className="emoji-btn" onClick={() => setShowEmojis(!showEmojis)} />
-          {showEmojis && (
-            <Picker pickerStyle={{ width: '50%' }} onEmojiClick={onEmojiClick} />
-          )}{' '}
-        </div>
       </div>
+      <SendMessage textMessage={textMessage} setTextMessage={setTextMessage} scroll={scroll} />
     </div>
   );
 };

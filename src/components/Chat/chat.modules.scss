@@ -5,6 +5,10 @@
   height: 500px;
   background-color: rgba(255, 255, 255, 0.292);
 
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
   border-radius: 20px;
   box-shadow: rgba(72, 0, 58, 0.2) 0px 5px 29px 0px;
 }
@@ -34,12 +38,6 @@
       margin-right: 10px;
     }
   }
-}
-
-.text-field {
-  position: absolute;
-  z-index: 1;
-  top: 530px;
 }
 
 .msg-container {
@@ -93,6 +91,35 @@
   padding: 5px 15px;
 }
 
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(233, 233, 233, 0.3);
+  border-radius: 10px;
+
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar {
+  border-radius: 20px;
+
+  width: 12px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #58005e1a;
+}
+
+.bottom {
+  position: relative;
+}
+
+.text-field {
+  z-index: 1;
+  display: flex;
+}
+
 .text-input {
   height: 50px;
   width: 540px;
@@ -121,34 +148,18 @@
   }
 }
 
-::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(233, 233, 233, 0.3);
-  border-radius: 10px;
-
-  background-color: #f5f5f5;
-}
-
-::-webkit-scrollbar {
-  border-radius: 20px;
-
-  width: 12px;
-  background-color: #f5f5f5;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #58005e1a;
-}
-
 .emoji-container {
   position: absolute;
-  top: 540px;
-  left: 820px;
+  bottom: 12px;
+  left: 490px;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
 }
 
-.emoji-btn {
+.btn-icon {
   width: 30px;
   height: 30px;
+  order: 1;
+  opacity: 20%;
 }
