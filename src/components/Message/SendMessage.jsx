@@ -1,15 +1,20 @@
-import { React, useEffect, useState } from 'react';
+import { React, useEffect, useState, useRef} from 'react';
 import '../Chat/chat.modules.scss';
 import { auth, db } from '../../utils/firebase';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import Picker from 'emoji-picker-react';
 import { ReactComponent as EmojiIcon } from '../../assets/emoji-icon.svg';
 
-const SendMessage = ({ scroll, textMessage, setTextMessage }) => {
+const SendMessage = ({ scrollRef, textMessage, setTextMessage, showEmojis, setShowEmojis }) => {
+  
+
+
   const sendMessage = async (event) => {
     event.preventDefault();
 
+   
     const { uid, displayName, photoURL } = auth.currentUser;
+
 
     await addDoc(collection(db, 'messages'), {
       text: textMessage,
@@ -19,10 +24,9 @@ const SendMessage = ({ scroll, textMessage, setTextMessage }) => {
       uid,
     });
     setTextMessage('');
-    scroll.current.scrollIntoView({ behavior: 'smooth' });
+    console.log(scrollRef)
+    scrollRef.current.scrollIntoView({ behavior: 'smooth' });
   };
-
-  const [showEmojis, setShowEmojis] = useState(false);
 
   const onEmojiClick = (emojiObject) => {
     setTextMessage((prev) => prev + emojiObject.emoji);
@@ -47,7 +51,7 @@ const SendMessage = ({ scroll, textMessage, setTextMessage }) => {
         </button>
       </form>
 
-      <div className="emoji-container">
+      <div className="emoji-container" onClick={(e) => e.stopPropagation()}>
         <EmojiIcon className="btn-icon" onClick={() => setShowEmojis(!showEmojis)} />
         {showEmojis && (
           <Picker
