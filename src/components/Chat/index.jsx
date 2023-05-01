@@ -17,8 +17,6 @@ const Chat = () => {
 
   const [textMessage, setTextMessage] = useState('');
 
-  const scrollRef = useRef();
-
   useEffect(() => {
     setIsLoading(true);
     const q = query(collection(db, 'messages'), orderBy('createdAt'));
@@ -35,27 +33,28 @@ const Chat = () => {
 
   const nodeRef = createRef();
 
+  const scrollRef = useRef();
+
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
   return (
-    <div className="main-container" onClick={() => setShowEmojis(false)}>
-      <div className="chat_container">
-        <TransitionGroup>
-          <div className="chat-messages" ref={scrollRef}>
-            {isLoading ? (
-              <Skeleton />
-            ) : (
-              messages?.map((message) => (
-                <CSSTransition
-                  key={message.uid + Math.random()}
-                  nodeRef={nodeRef}
-                  timeout={500}
-                  classNames="message-animation"
-                  scrollRef={scrollRef}>
-                  <Message message={message} />
-                </CSSTransition>
-              ))
-            )}
-          </div>
-        </TransitionGroup>
+    <div className='main-container' onClick={() => setShowEmojis(false)}>
+      <div className='chat_container'>
+        <div className='chat-messages'>
+          {isLoading ? (
+            <Skeleton />
+          ) : (
+            <>
+              {messages?.map((message) => (
+                <Message message={message} />
+              ))}
+              <div className='ref' ref={scrollRef}></div>
+            </>
+          )}
+        </div>
+
         <SendMessage
           textMessage={textMessage}
           setTextMessage={setTextMessage}

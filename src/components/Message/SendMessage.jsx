@@ -1,21 +1,15 @@
-import { React, useEffect, useState, useRef} from 'react';
+import { React, useEffect, useState, useRef } from 'react';
 import '../Chat/chat.modules.scss';
 import { auth, db } from '../../utils/firebase';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import Picker from 'emoji-picker-react';
 import { ReactComponent as EmojiIcon } from '../../assets/emoji-icon.svg';
 
-const SendMessage = ({ scrollRef, textMessage, setTextMessage, showEmojis, setShowEmojis }) => {
-  
-
-
+const SendMessage = ({ textMessage, setTextMessage, showEmojis, setShowEmojis }) => {
   const sendMessage = async (event) => {
     event.preventDefault();
-
-   
+    setTextMessage('');
     const { uid, displayName, photoURL } = auth.currentUser;
-
-
     await addDoc(collection(db, 'messages'), {
       text: textMessage,
       displayName,
@@ -23,9 +17,6 @@ const SendMessage = ({ scrollRef, textMessage, setTextMessage, showEmojis, setSh
       createdAt: serverTimestamp(),
       uid,
     });
-    setTextMessage('');
-    console.log(scrollRef)
-    scrollRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 
   const onEmojiClick = (emojiObject) => {
@@ -34,28 +25,28 @@ const SendMessage = ({ scrollRef, textMessage, setTextMessage, showEmojis, setSh
   };
 
   return (
-    <div className="bottom">
-      <form className="text-field" onSubmit={(e) => sendMessage(e)}>
+    <div className='bottom'>
+      <form className='text-field' onSubmit={(e) => sendMessage(e)} autoComplete='off'>
         <input
           value={textMessage}
           onChange={(e) => setTextMessage(e.target.value)}
-          id="messageInput"
-          name="messageInput"
-          type="text"
-          className="text-input"
-          placeholder="type message..."
+          id='messageInput'
+          name='messageInput'
+          type='text'
+          className='text-input'
+          placeholder='type message...'
         />
 
-        <button className="send-btn" type="submit" disabled={!textMessage} onClick={sendMessage}>
+        <button className='send-btn' type='submit' disabled={!textMessage} onClick={sendMessage}>
           Send
         </button>
       </form>
 
-      <div className="emoji-container" onClick={(e) => e.stopPropagation()}>
-        <EmojiIcon className="btn-icon" onClick={() => setShowEmojis(!showEmojis)} />
+      <div className='emoji-container' onClick={(e) => e.stopPropagation()}>
+        <EmojiIcon className='btn-icon' onClick={() => setShowEmojis(!showEmojis)} />
         {showEmojis && (
           <Picker
-            className="picker"
+            className='picker'
             onEmojiClick={onEmojiClick}
             searchDisabled={true}
             width={300}
