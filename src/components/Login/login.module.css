@@ -1,25 +1,26 @@
-@import '../../variables.module.scss';
+import '../../variables.module.scss';
 
 .container {
   margin: 100px auto;
   height: 100px;
   width: 400px;
   border-radius: 20px;
-  box-shadow: rgba(72, 0, 58, 0.2) 0px 5px 29px 0px;
+  /* box-shadow: $boxShadow; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  background-color: $backgroundColor;
+}
+
+.wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: nowrap;
 }
 
-.g-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: nowrap;
-}
-
-.g-btn {
+.btn {
   display: flex;
   align-items: center;
   padding: 5px;
@@ -32,7 +33,7 @@
   box-shadow: 1px 1px 1px grey;
 }
 
-.g-btn:hover {
+.btn:hover {
   cursor: pointer;
   border: 1px solid purple;
 }

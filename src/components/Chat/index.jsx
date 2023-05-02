@@ -1,12 +1,12 @@
 import React, { createRef, useEffect, useRef, useState } from 'react';
-import './chat.modules.scss';
+import './chat.scss';
 import { collection, orderBy, query, onSnapshot } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, db } from '../../utils/firebase';
 import Message from '../Message/Message';
 import SendMessage from '../Message/SendMessage';
 import Skeleton from '../Skeleton/';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+
 
 const Chat = () => {
   const [user] = useAuthState(auth);

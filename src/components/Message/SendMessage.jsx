@@ -1,5 +1,5 @@
 import { React, useEffect, useState, useRef } from 'react';
-import '../Chat/chat.modules.scss';
+import '../Chat/chat.scss';
 import { auth, db } from '../../utils/firebase';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import Picker from 'emoji-picker-react';

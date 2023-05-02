@@ -1,5 +1,5 @@
 import { React, useEffect, useMemo } from 'react';
-import '../Chat/chat.modules.scss';
+import '../Chat/chat.scss';
 import { auth, db } from '../../utils/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
