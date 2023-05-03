@@ -1,4 +1,4 @@
-@import '../../variables.module.scss';
+@import '../../variables.scss';
 
 nav {
   display: flex;
@@ -7,7 +7,7 @@ nav {
   padding: 0 30px;
   width: 100%;
   height: 50px;
-  background-color: #3b0045b6;
+  background-color: $darkViolet;
   box-shadow: rgba(35, 0, 32, 0.35) 0px 5px 15px;
 
   h1 {
@@ -17,13 +17,13 @@ nav {
   button {
     width: 130px;
     height: 40px;
-    background-color: #890f9f;
-    color: rgba(255, 255, 255, 0.497);
+    background-color: $darkViolet;
+    color: $disableColor;
 
     font-size: 14px;
     font-weight: 600;
     border: none;
-    border-radius: 20px;
+    border-radius: $borderRadius;
 
     &:hover {
       background-color: #69007c;

@@ -1,46 +1,40 @@
-@import '../../variables.module.scss';
+@import '../../variables.scss';
 
 .container {
   margin: 100px auto;
   height: 100px;
   width: 400px;
   border-radius: 20px;
-  box-shadow: rgba(72, 0, 58, 0.2) 0px 5px 29px 0px;
+  box-shadow: $boxShadow;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  background-color: $backgroundColor;
+}
+
+.wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: nowrap;
 }
 
-.g-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: nowrap;
-}
-
-.g-btn {
+.btn {
   display: flex;
   align-items: center;
   padding: 5px;
-  margin-left: 10px;
+  margin-left: 15px;
   background: white;
-  color: #444;
+  color: $fontColor;
   width: 120px;
-  border-radius: 5px;
-  border: thin solid #888;
-  box-shadow: 1px 1px 1px grey;
+  border-radius: $borderRadius;
+  transition: all 0.2s ease-in-out;
 }
 
-.g-btn:hover {
+.btn:hover {
   cursor: pointer;
-  border: 1px solid purple;
-}
-
-.label {
-  margin-right: 5px;
-  font-family: 'Roboto';
-  font-weight: normal;
+  transform: scale(1.1);
 }
 
 .icon {
@@ -57,6 +51,4 @@
 
   font-size: 14px;
   font-weight: bold;
-
-  font-family: 'Roboto', sans-serif;
 }
