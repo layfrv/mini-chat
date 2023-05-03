@@ -1,14 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './chat.scss';
 import { collection, orderBy, query, onSnapshot } from 'firebase/firestore';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth, db } from '../../utils/firebase';
+import { db } from '../../utils/firebase';
 import Message from '../Message/Message';
 import SendMessage from '../Message/SendMessage';
 import Skeleton from '../Skeleton/';
 
 const Chat = () => {
-  const [user] = useAuthState(auth);
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -18,16 +16,18 @@ const Chat = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    const q = query(collection(db, 'messages'), orderBy('createdAt', 'asc'));
-    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
-      let messages = [];
-      QuerySnapshot.forEach((doc) => {
-        messages.push({ ...doc.data(), id: doc.id });
+    const q = query(collection(db, 'messages'), orderBy('createdAt'));
+    const unsubscribe = onSnapshot(q, (docs) => {
+      const newMessages = [];
+      docs.forEach((doc) => {
+        newMessages.push({ ...doc.data(), id: doc.id });
       });
-      setMessages(messages);
+      setMessages(newMessages);
+      console.log(newMessages);
       setIsLoading(false);
     });
-    return () => unsubscribe;
+
+    return () => unsubscribe();
   }, []);
 
   const scrollRef = useRef();

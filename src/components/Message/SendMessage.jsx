@@ -6,17 +6,25 @@ import Picker from 'emoji-picker-react';
 import { ReactComponent as EmojiIcon } from '../../assets/emoji-icon.svg';
 
 const SendMessage = ({ textMessage, setTextMessage, showEmojis, setShowEmojis }) => {
-  const sendMessage = async (event) => {
+  const sendMessage = (event) => {
     event.preventDefault();
-    setTextMessage('');
     const { uid, displayName, photoURL } = auth.currentUser;
-    await addDoc(collection(db, 'messages'), {
-      text: textMessage,
-      displayName,
-      photoURL,
-      createdAt: serverTimestamp(),
-      uid,
+    new Promise((resolve, reject) => {
+      addDoc(collection(db, 'messages'), {
+        text: textMessage,
+        displayName,
+        photoURL,
+        createdAt: serverTimestamp(),
+        uid,
+      })
+        .then(() => {
+          resolve();
+        })
+        .catch((error) => {
+          reject(error);
+        });
     });
+    setTextMessage('');
   };
 
   const onEmojiClick = (emojiObject) => {
