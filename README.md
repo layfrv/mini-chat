@@ -4,23 +4,16 @@
 
 ## Функциональность
 
-Регистрация и аутентификация пользователей через Firebase Authentication.
-Создание и присоединение к чатам.
-Отправка сообщений в чаты.
-Просмотр списка пользователей, присоединившихся к чату.
-Управление профилем пользователя (изменение имени и аватара).
+- Регистрация и аутентификация пользователей через Firebase Authentication.
+- Отправка сообщений в чаты.
 
 ## Технологии
 
-React
-Firebase (Authentication, Firestore)
-SCSS
+- React
+- Typescript
+- Firebase (Authentication, Firestore)
+- SCSS
 
-## Запуск проекта
 
-Клонируйте репозиторий: git clone https://github.com/<username>/<repository>.git
-Перейдите в папку проекта: cd <repository>
-Установите зависимости: npm install
-Создайте файл .env на основе .env.example и заполните необходимые поля с настройками Firebase.
-Запустите приложение: npm start
-Деплой
+https://user-images.githubusercontent.com/99030448/235971171-76a45a0f-e3d9-4b74-bd05-05e6299ac449.mp4
+
