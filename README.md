@@ -1,6 +1,6 @@
 # Chat App
 
-Простое приложение для чата, разработанное с использованием React, Typescript, Firebase и SCSS.
+Простое приложение для чата, разработанное с использованием React, Firebase и SCSS.
 
 ## Функциональность
 
@@ -10,7 +10,6 @@
 ## Технологии
 
 - React
-- Typescript
 - Firebase (Authentication, Firestore)
 - SCSS
 
