@@ -1,9 +1,9 @@
-import { React } from 'react';
-import '../Chat/chat.scss';
-import { auth, db } from '../../utils/firebase';
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import Picker from 'emoji-picker-react';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import React from 'react';
 import { ReactComponent as EmojiIcon } from '../../assets/emoji-icon.svg';
+import { auth, db } from '../../utils/firebase';
+import '../Chat/chat.scss';
 
 const SendMessage = ({ textMessage, setTextMessage, showEmojis, setShowEmojis }) => {
   const sendMessage = (event) => {
@@ -17,8 +17,8 @@ const SendMessage = ({ textMessage, setTextMessage, showEmojis, setShowEmojis })
         createdAt: serverTimestamp(),
         uid,
       })
-        .then(() => {
-          resolve();
+        .then((data) => {
+          resolve(data);
         })
         .catch((error) => {
           reject(error);
@@ -54,6 +54,7 @@ const SendMessage = ({ textMessage, setTextMessage, showEmojis, setShowEmojis })
         <EmojiIcon className='btn-icon' onClick={() => setShowEmojis(!showEmojis)} />
         {showEmojis && (
           <Picker
+          // @ts-ignore
             className='picker'
             onEmojiClick={onEmojiClick}
             searchDisabled={true}

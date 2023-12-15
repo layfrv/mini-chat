@@ -1,18 +1,19 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import './chat.scss';
 import { collection, orderBy, query, onSnapshot } from 'firebase/firestore';
 import { db } from '../../utils/firebase';
 import Message from '../Message/Message';
 import SendMessage from '../Message/SendMessage';
-import Skeleton from '../Skeleton/';
+import Skeleton from '../Skeleton';
+import { IMessage } from '@/types/types';
 
-const Chat = () => {
-  const [messages, setMessages] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+const Chat: FC = () => {
+  const [messages, setMessages] = useState<IMessage[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [showEmojis, setShowEmojis] = useState(false);
+  const [showEmojis, setShowEmojis] = useState<boolean>(false);
 
-  const [textMessage, setTextMessage] = useState('');
+  const [textMessage, setTextMessage] = useState<string>('');
 
   useEffect(() => {
     setIsLoading(true);
@@ -23,17 +24,16 @@ const Chat = () => {
         newMessages.push({ ...doc.data(), id: doc.id });
       });
       setMessages(newMessages);
-      console.log(newMessages);
       setIsLoading(false);
     });
 
     return () => unsubscribe();
   }, []);
 
-  const scrollRef = useRef();
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
+    scrollRef.current.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
   return (

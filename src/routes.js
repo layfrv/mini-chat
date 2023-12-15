@@ -1,4 +1,4 @@
-import Chat from './components/Chat/index';
+import Chat from './components/Chat/index.tsx';
 import Login from './components/Login/index';
 import { CHAT_ROUTE, LOGIN_ROUTE } from './utils/consts';
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styles from './login.module.scss';
 import { auth } from '../../utils/firebase';
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
@@ -15,7 +15,7 @@ const signInWithGoogle = () => {
     });
 };
 
-const Login = () => {
+const Login: FC = () => {
   return (
     <div className={styles.container}>
       <div onClick={signInWithGoogle} className={styles.wrapper}>

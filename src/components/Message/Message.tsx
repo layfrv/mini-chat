@@ -1,9 +1,9 @@
-import { React } from 'react';
-import '../Chat/chat.scss';
-import { auth, db } from '../../utils/firebase';
+import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../utils/firebase';
+import '../Chat/chat.scss';
 
-const Message = ({ message }) => {
+const Message: any = ({ message }) => {
   const [user] = useAuthState(auth);
 
   return (
